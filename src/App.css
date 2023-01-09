@@ -1,0 +1,43 @@
+.app {
+  max-width: 1170px;
+  margin: 100px auto;
+   display: flex;
+    flex-direction: column;
+}
+
+.input {
+    margin: 50px auto;
+  width: 200px;
+  height: 30px;
+
+}
+
+.items {
+   display: flex;
+   justify-content: center;
+    flex-wrap: wrap;
+}
+
+.item_container {
+    width: 200px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: ease-in-out 0.8s;
+
+}
+
+img.item_image  {
+    width: 200px;
+    margin-top: 20px;
+    border-radius: 50%;
+}
+
+.avatar-skeleton {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    border-radius: 50%;
+}
