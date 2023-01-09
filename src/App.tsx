@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useId } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { IRootState } from "./redux/reducers/search";
+import {
+  ESearchActionTypes,
+  IRootState,
+  TLoadedItemProps,
+} from "./redux/reducers/search";
 import "./App.css";
-import { SET_SEARCH_QUERY } from "./redux/actions/actionCreator";
-import { ItemImage } from "./components/itemImage";
+import { ItemImage } from "./components/ItemImage";
 
 const App = () => {
+  const id = useId();
   const dispatch = useDispatch();
   const query = useSelector((state: IRootState) => state.search.query);
   const data = useSelector((state: IRootState) => state.search.data);
 
   const onChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({
-      type: SET_SEARCH_QUERY,
+      type: ESearchActionTypes.SET_SEARCH_QUERY,
       payload: { query: event.target.value },
     });
   };
@@ -29,13 +33,13 @@ const App = () => {
         />
 
         <div className="items">
-          {data &&
-            data.map((item: any) => (
+          {data?.length > 0 &&
+            data.map((item: TLoadedItemProps, i) => (
               <ItemImage
-                key={item.url}
-                img={item.img}
-                url={item.url}
-                login={item.login}
+                key={id + i}
+                img={item?.img}
+                url={item?.url}
+                login={item?.login}
               />
             ))}
         </div>

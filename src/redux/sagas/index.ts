@@ -1,20 +1,21 @@
-import { take, put, spawn, call, debounce } from "redux-saga/effects";
-import {
-  SET_SEARCH_QUERY,
-  setSearchData,
-  setSearchQuery,
-} from "../actions/actionCreator";
+import { put, call, debounce } from "redux-saga/effects";
+import { setSearchData } from "../actions/actionCreator";
 import { handleSearchQuery } from "../../utils";
+import { ESearchActionTypes, TLoadedItemProps } from "../reducers/search";
 
-function* changeSearchSage(action: any) {
-  // @ts-ignore
-  yield setSearchQuery(action.payload.query);
-  // @ts-ignore
-  const data = yield handleSearchQuery(action.payload.query);
-  // @ts-ignore
-  return yield put(setSearchData(data));
+type TAction = {
+  type: string;
+  payload: { query: string };
+};
+
+function* changeSearchSage(action: TAction) {
+  const data: TLoadedItemProps[] = yield call(
+    handleSearchQuery,
+    action.payload.query
+  );
+  yield put(setSearchData(data));
 }
 
 export default function* rootSaga() {
-  yield debounce(500, SET_SEARCH_QUERY, changeSearchSage);
+  yield debounce(500, ESearchActionTypes.SET_SEARCH_QUERY, changeSearchSage);
 }

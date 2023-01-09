@@ -14,14 +14,10 @@ declare global {
 const composeEnhancers =
   (window["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"] as typeof compose) || compose;
 
-const configureStore = (preloadedState: any) =>
-  createStore(
-    reducer,
-    preloadedState,
-    composeEnhancers(applyMiddleware(sagaMiddleware))
-  );
+const configureStore = () =>
+  createStore(reducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
 
-const store = configureStore({});
+const store = configureStore();
 
 sagaMiddleware.run(rootSaga);
 

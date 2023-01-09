@@ -1,4 +1,4 @@
-export const handleSearchQuery = async (query: string) => {
+export const handleSearchQuery = async (query: string): Promise<void> => {
   if (query.length < 1) {
     return;
   }
