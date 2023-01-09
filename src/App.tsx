@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { IRootState } from "./redux/reducerts/search";
+import { IRootState } from "./redux/reducers/search";
 import "./App.css";
 import { SET_SEARCH_QUERY } from "./redux/actions/actionCreator";
 import { ItemImage } from "./components/itemImage";
