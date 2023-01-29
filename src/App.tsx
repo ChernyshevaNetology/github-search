@@ -1,4 +1,4 @@
-import React, { useId } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   ESearchActionTypes,
@@ -9,7 +9,6 @@ import "./App.css";
 import { ItemImage } from "./components/ItemImage";
 
 const App = () => {
-  const id = useId();
   const dispatch = useDispatch();
   const query = useSelector((state: IRootState) => state.search.query);
   const data = useSelector((state: IRootState) => state.search.data);
@@ -34,9 +33,9 @@ const App = () => {
 
         <div className="items">
           {data?.length > 0 &&
-            data.map((item: TLoadedItemProps, i) => (
+            data.map((item: TLoadedItemProps) => (
               <ItemImage
-                key={id + i}
+                key={item.url}
                 img={item?.img}
                 url={item?.url}
                 login={item?.login}
